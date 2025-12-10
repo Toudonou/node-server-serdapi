@@ -1,10 +1,10 @@
-require('dotenv').config({path: ".env"});
+require('dotenv').config();
 
 const { createServer } = require('node:http');
 const { getJson } = require("serpapi");
 
 const hostname = '127.0.0.1';
-const port = 3050;
+const port = process.env.PORT || 3050;
 
 const getJsonAsync = (params) => {
     return new Promise((resolve, reject) => {
@@ -60,6 +60,6 @@ const server = createServer(async (req, res) => {
     }
 });
 
-server.listen(port, hostname, () => {
+server.listen(port, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
 });
